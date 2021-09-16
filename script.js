@@ -56,7 +56,7 @@ console.log(passLength);
   // }
 for(var i=0; i < passLength; i++){
     var randomNumber = Math.floor(Math.random()* chosenChars.length)
-    password.push
+    password.push(chosenChars[randomNumber])
 }
   return password;  
 };
