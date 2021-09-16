@@ -2,63 +2,68 @@
 var generateBtn = document.querySelector('#generate');
 var chosenChars = [];
 function generatePassword(){
-  console.log('hey you clicked the button');
+  
+  var password = "";
 
   var passLength = prompt('How long do you want the Password');
-
+  
   if (passLength > 128){
     window.alert('Please enter value below 129');
-    return;
+    return password;
   } else if (passLength < 8){
     window.alert('Please enter value above 7');
-    return;
-  }else{
-    
+    return password;
   }
-
-  var passSpecial = confirm('do you want special characters?');
-  if (passSpecial){
-    passSpecial=('!','@','#','$','%','^','&','*','(',')','_','+');
-    chosenChars.push(passSpecial);
-  } else {
-    
-  }
-
-  var passLower = confirm('Do you want lower case characters?');
-  if(passLower){
-    passLower=('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
-    chosenChars.push(passLower);
-  }else{
-    
-  }
-
-  var passUpper = confirm('Do you want upper case characters?');
-  if(passUpper){
-   passUpper= ('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
-   chosenChars.push(passUpper);
-  }else{
-    
-  }
-
-  var passNum = confirm('Do you want numbers?')
-  if(passNum){
-    passNum=('1','2','3','4','5','6','7','8','9','0');
-    chosenChars.push(passNum);
-  }else{
-    
-  }
-  password = [];
-  console.log(chosenChars);
-  // for (var i=0; i< passLength; i++){
-  //   var randomNumber = Math.floor(Math.random() * (passSpecial.length + passLower.length + passUpper.length + passNum.length));
-  //   password += passSpecial.substring(randomNumber, randomNumber + 1) + passLower.substring(randomNumber, randomNumber + 1) + passUpper.substring(randomNumber, randomNumber + 1) + passNum.substring(randomNumber, randomNumber + 1);
-  // }
   
-  for (var i=0; i < passLength; i++){
+  var passNum = confirm('Do you want numbers?')
+  var passSpecial = confirm('do you want special characters?');
+  var passLower = confirm('Do you want lower case characters?');
+  var passUpper = confirm('Do you want upper case characters?');
+
+  if (!passNum && !passSpecial && !passLower && !passUpper){
+    window.alert('Please select at least one option.');
+    return password;
+  }
+
+  if (passSpecial){
+    passSpecial=['!','@','#','$','%','^','&','*','(',')','_','+'];
+    chosenChars= [...passSpecial, ...chosenChars];
+    var randomNumber = Math.floor(Math.random() * passSpecial.length);
+    password += passSpecial[randomNumber];
+  } 
+
+  if(passLower){
+    passLower=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+    chosenChars= [...passLower, ...chosenChars];
+    var randomNumber = Math.floor(Math.random() * passLower.length);
+    password += passLower[randomNumber];
+  }
+
+  if(passUpper){
+   passUpper= ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+   chosenChars= [...passUpper, ...chosenChars];
+   var randomNumber = Math.floor(Math.random() * passUpper.length);
+    password += passUpper[randomNumber];
+  }
+
+  if(passNum){
+    passNum=['1','2','3','4','5','6','7','8','9','0'];
+    chosenChars= [...passNum, ...chosenChars];
+    var randomNumber = Math.floor(Math.random() * passNum.length);
+    password += passNum[randomNumber];
+  }
+  
+  
+  
+
+  var charLeft = passLength - password.length;
+
+  console.log(password.length);
+  
+  for (var i=0; i < charLeft; i++){
   var randomNumber = Math.floor(Math.random() * chosenChars.length);
-  password += chosenChars.splice(randomNumber); 
+  password += chosenChars[randomNumber]; 
 }
-// password.push(chosenChars[randomNumber])
   console.log([password]);
   return password;  
 };
