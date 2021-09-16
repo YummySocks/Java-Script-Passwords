@@ -1,6 +1,6 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
+var chosenChars = [];
 function generatePassword(){
   console.log("hey you clicked the button");
 
@@ -18,37 +18,46 @@ function generatePassword(){
 
   var passSpecial = confirm("do you want special characters?");
   if (passSpecial){
-    passSpecial="!@#$%^&*()_+";
+    passSpecial=['!','@','#','$','%','^','&','*','(',')','_','+'];
+    chosenChars.push(passSpecial);
   } else {
-    passSpecial=false;
+    
   }
 
   var passLower = confirm("Do you want lower case characters?");
   if(passLower){
-    passLower="abcdefghijklmnopqrstuvwxyz";
+    passLower=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+    chosenChars.push(passLower);
   }else{
-    passLower=false;
+    
   }
 
   var passUpper = confirm("Do you want upper case characters?");
   if(passUpper){
-    passUpper="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+   passUpper= ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+   chosenChars.push(passUpper);
   }else{
-    passUpper=false;
+    
   }
 
   var passNum = confirm("Do you want numbers?")
   if(passNum){
-    passNum="1234567890";
+    passNum=['1','2','3','4','5','6','7','8','9','0'];
+    chosenChars.push(passNum);
   }else{
-    passNum=false;
+    
   }
 
-  for (var i=0; i< passLength; i++){
-    var randomNumber = Math.floor(Math.random() * (passSpecial.length + passLower.length + passUpper.length + passNum.length));
-    password += passSpecial.substring(randomNumber, randomNumber + 1) + passLower.substring(randomNumber, randomNumber + 1) + passUpper.substring(randomNumber, randomNumber + 1) + passNum.substring(randomNumber, randomNumber + 1);
-  }
-
+password= [];
+console.log(passLength);
+  // for (var i=0; i< passLength; i++){
+  //   var randomNumber = Math.floor(Math.random() * (passSpecial.length + passLower.length + passUpper.length + passNum.length));
+  //   password += passSpecial.substring(randomNumber, randomNumber + 1) + passLower.substring(randomNumber, randomNumber + 1) + passUpper.substring(randomNumber, randomNumber + 1) + passNum.substring(randomNumber, randomNumber + 1);
+  // }
+for(var i=0; i < passLength; i++){
+    var randomNumber = Math.floor(Math.random()* chosenChars.length)
+    password.push
+}
   return password;  
 };
 
