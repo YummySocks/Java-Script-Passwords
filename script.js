@@ -53,13 +53,23 @@ function generatePassword(){
     var randomNumber = Math.floor(Math.random() * passNum.length);
     password += passNum[randomNumber];
   }
+  //setting length of i so the already included length is subtracted from the length they asked
   var charLeft = passLength - password.length;
-  
+  // pulls random characters from array until it is the selected length
   for (var i=0; i < charLeft; i++){
   var randomNumber = Math.floor(Math.random() * chosenChars.length);
   password += chosenChars[randomNumber]; 
 }
-  return password;  
+  // converts the password string into an array
+  var password = [...password];
+  // scrambles around the array
+  password.sort(function(){return 0.5 - Math.random()});
+  // converts it back into a string with commas between everthing
+  var password = password.toString();
+  //replaces all the commas with an empty value so the string doesnt have any spaces or commas
+  password = password.replace(/,/g,"");
+  // sends password to the writePassword function
+  return password;
 };
 
 // Write password to the #password input
