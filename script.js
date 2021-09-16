@@ -1,30 +1,31 @@
 // Assignment Code
 var generateBtn = document.querySelector('#generate');
-var chosenChars = [];
 function generatePassword(){
-  
+  //Declaring values for password data
+  var chosenChars = [];
   var password = "";
-
+  // asking for a number
   var passLength = prompt('How long do you want the Password');
-  
-  if (passLength > 128){
-    window.alert('Please enter value below 129');
+  // checks to see if value is between 8 and 128
+  if (passLength > 128 || passLength< 8){
+    window.alert('Please enter value between 8 and 128');
     return password;
-  } else if (passLength < 8){
-    window.alert('Please enter value above 7');
+  } else if ((passLength > 7) && (passLength <129)){
+  } else  {
+    window.alert('please enter valid number')
     return password;
   }
-  
+  //gets all the user inputs and puts them into variables
   var passNum = confirm('Do you want numbers?')
   var passSpecial = confirm('do you want special characters?');
   var passLower = confirm('Do you want lower case characters?');
   var passUpper = confirm('Do you want upper case characters?');
-
+  // makes sure at least one option is selected
   if (!passNum && !passSpecial && !passLower && !passUpper){
     window.alert('Please select at least one option.');
     return password;
   }
-
+  // goes through and adds a variable if one is selected otherwise it moves on
   if (passSpecial){
     passSpecial=['!','@','#','$','%','^','&','*','(',')','_','+'];
     chosenChars= [...passSpecial, ...chosenChars];
@@ -52,19 +53,12 @@ function generatePassword(){
     var randomNumber = Math.floor(Math.random() * passNum.length);
     password += passNum[randomNumber];
   }
-  
-  
-  
-
   var charLeft = passLength - password.length;
-
-  console.log(password.length);
   
   for (var i=0; i < charLeft; i++){
   var randomNumber = Math.floor(Math.random() * chosenChars.length);
   password += chosenChars[randomNumber]; 
 }
-  console.log([password]);
   return password;  
 };
 
