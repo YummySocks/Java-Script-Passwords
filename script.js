@@ -16,7 +16,7 @@ function generatePassword(){
     return password;
   }
   //gets all the user inputs and puts them into variables
-  var passNum = confirm('Do you want numbers?')
+  var passNum = confirm('Do you want numbers?');
   var passSpecial = confirm('do you want special characters?');
   var passLower = confirm('Do you want lower case characters?');
   var passUpper = confirm('Do you want upper case characters?');
